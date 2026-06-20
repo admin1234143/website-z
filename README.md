@@ -28,7 +28,7 @@ npm run build
 npm run preview
 ```
 
-Deployment (Cloudflare Workers / Wrangler):
+Deployment (Cloudflare Pages via Wrangler):
 
 1. Ensure you have an account and are logged in:
 
@@ -36,16 +36,19 @@ Deployment (Cloudflare Workers / Wrangler):
 npx wrangler login
 ```
 
-2. Install dependencies and build (wrangler will also run the build command defined in `wrangler.toml`):
+2. Install dependencies, build and publish the `dist/` folder to Cloudflare Pages:
 
 ```bash
 npm install
-npx wrangler deploy
+npm run build
+npx wrangler pages publish ./dist --project-name z-ascension-site
 ```
 
-Notes:
-- `wrangler.toml` is configured to build the Vite site and upload the `dist/` folder as the site bucket.
-- If you prefer Cloudflare Pages, use `wrangler pages deploy ./dist --project-name <name>` instead.
+Note:
+- Do NOT use `npx wrangler deploy` for Pages; that command targets Cloudflare Workers and will expect a worker bundle (hence the "workers-site/index.js" error).
+- `wrangler pages publish` uploads the static `dist/` folder produced by Vite.
+- If you prefer the Cloudflare dashboard, create a Pages project and connect your repo instead.
+
 
 Files:
 - [index.html](index.html)

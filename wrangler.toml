@@ -1,3 +1,7 @@
+# Wrangler config — this project is a static site built by Vite into `dist/`.
+# For Cloudflare Pages, run `wrangler pages publish ./dist --project-name z-ascension-site`.
+# Avoid using `npx wrangler deploy` (it targets Workers and expects a worker bundle).
+
 name = "z-ascension-site"
 compatibility_date = "2026-06-20"
 
